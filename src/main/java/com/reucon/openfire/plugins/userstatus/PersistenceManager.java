@@ -17,7 +17,7 @@ public interface PersistenceManager
 
     void setOffline(Session session, Date logoffDate);
 
-    void setPresence(Session session, String presenceText);
+    void setPresence(Session session, String presenceText, String statusText);
 
     void deleteOldHistoryEntries();
 }

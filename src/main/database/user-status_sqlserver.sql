@@ -3,6 +3,7 @@ CREATE TABLE userStatus (
     resource        NVARCHAR(64)         NOT NULL,
     online          TINYINT             NOT NULL,
     presence        NVARCHAR(15),
+    statusText      NVARCHAR(30),
     lastIpAddress   NVARCHAR(15)            NOT NULL,
     lastLoginDate   NVARCHAR(15)            NOT NULL,
     lastLogoffDate  NVARCHAR(15),

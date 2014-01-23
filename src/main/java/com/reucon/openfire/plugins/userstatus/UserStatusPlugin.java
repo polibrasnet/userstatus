@@ -199,8 +199,8 @@ public class UserStatusPlugin implements Plugin, PropertyEventListener, SessionE
         {
             return;
         }
-
-        setPresence(session, presenceText);
+        
+        setPresence(session, presenceText, presence.getStatus());
     }
 
     // implementation of PersistenceManager
@@ -237,11 +237,11 @@ public class UserStatusPlugin implements Plugin, PropertyEventListener, SessionE
         }
     }
 
-    public void setPresence(Session session, String presenceText)
+    public void setPresence(Session session, String presenceText, String statusText)
     {
         for (PersistenceManager pm : persistenceManagers)
         {
-            pm.setPresence(session, presenceText);
+            pm.setPresence(session, presenceText, statusText);
         }
     }
 

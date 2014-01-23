@@ -108,7 +108,7 @@ public class PhpBB3PersistenceManager implements PersistenceManager
         }
     }
 
-    public void setPresence(Session session, String presenceText)
+    public void setPresence(Session session, String presenceText, String statusText)
     {
         Connection con = null;
         PreparedStatement pstmt = null;

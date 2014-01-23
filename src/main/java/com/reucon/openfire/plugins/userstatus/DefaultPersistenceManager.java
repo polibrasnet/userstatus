@@ -28,7 +28,7 @@ public class DefaultPersistenceManager implements PersistenceManager
                     "WHERE username = ? AND resource = ?";
 
     private static final String SET_PRESENCE =
-            "UPDATE userStatus SET presence = ? WHERE username = ? AND resource = ?";
+            "UPDATE userStatus SET presence = ?, statusText = ? WHERE username = ? AND resource = ?";
 
     private static final String SET_OFFLINE =
             "UPDATE userStatus SET online = 0, lastLogoffDate = ? WHERE username = ? AND resource = ?";
@@ -176,7 +176,7 @@ public class DefaultPersistenceManager implements PersistenceManager
         deleteOldHistoryEntries();
     }
 
-    public void setPresence(Session session, String presenceText)
+    public void setPresence(Session session, String presenceText, String statusText)
     {
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -186,8 +186,9 @@ public class DefaultPersistenceManager implements PersistenceManager
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(SET_PRESENCE);
             pstmt.setString(1, presenceText);
-            pstmt.setString(2, session.getAddress().getNode());
-            pstmt.setString(3, session.getAddress().getResource());
+            pstmt.setString(2, statusText);
+            pstmt.setString(3, session.getAddress().getNode());
+            pstmt.setString(4, session.getAddress().getResource());
             pstmt.executeUpdate();
         }
         catch (SQLException e)
